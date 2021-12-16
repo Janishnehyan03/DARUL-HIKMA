@@ -1,0 +1,73 @@
+#login {
+  background: linear-gradient(90deg, #dce3f5 0%, #ffffff 100%);
+  height: 100vh;
+}
+.login {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  font-family: "Comfortaa", cursive;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 10px;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: "Comfortaa", cursive;
+}
+
+.form input:focus {
+  background: #ffffff !important;
+  border: 1px solid black;
+}
+
+.form button {
+  font-family: "Comfortaa", cursive;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4b6cb7;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:active {
+  background: #395591;
+}
+
+.form h1 {
+  font-size: 30px;
+  color: #44464b;
+}
+.amount {
+  background-color: white !important;
+  border: 1px solid rgb(5, 36, 51) !important;
+  height: 5rem;
+  font-size: 4rem;
+}
+.donate-btn{
+  background-color: rgb(10, 52, 68) !important;
+}

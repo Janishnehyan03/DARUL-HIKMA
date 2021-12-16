@@ -1,0 +1,48 @@
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  align-items: center;
+  margin: 3rem;
+}
+#customers .table-head {
+ text-align: center;
+ background-color: rgb(138, 138, 138);
+}
+#customers tr th,
+#customers tr td {
+  text-align: center;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #262727;
+  color: white;
+}
+#customers .btn {
+  padding: 2px 10px;
+  border-radius: 30px;
+}
+#customers .edit {
+  background-color: rgb(65, 65, 65);
+  color: white;
+}
+#customers .delete {
+  background-color: rgb(230, 75, 75);
+  color: white;
+}
+#customers .btn .edit {
+  background-color: rgb(13, 56, 77);
+  color: white;
+}
