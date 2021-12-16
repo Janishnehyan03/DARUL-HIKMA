@@ -93,7 +93,7 @@ exports.resizeImages = async (req, res, next) => {
 
   next();
 };
-let path = "./client/public/uploads/";
+let path = "./public/";
 
 // storage for files
 const storage = multer.diskStorage({
