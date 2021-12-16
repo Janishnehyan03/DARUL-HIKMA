@@ -52,10 +52,10 @@ console.log(process.env.NODE_ENV);
 
 //set static folder
 
-app.use(express.static("client/build"));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
+app.use(express.static("public"));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+// });
 
 app.use(globalErrorHandler);
 
