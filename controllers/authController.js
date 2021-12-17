@@ -1,5 +1,5 @@
 const { promisify } = require("util");
-const User = require("../models/authModel");
+const Auth = require("../models/authModel");
 const catchAsync = require("../utils/catchAsync");
 const jwt = require("jsonwebtoken");
 const AppError = require("../utils/appError");
@@ -33,7 +33,7 @@ const sendToken = (user, statusCode, req, res) => {
   });
 };
 exports.createUser = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
+  const newUser = await Auth.create(req.body);
   // const url = `${req.protocol}://${req.get("host")}/me`;
   Email.sendWelcomeEmail({
     email: newUser.email,
@@ -52,7 +52,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Please provide email and password", 400));
   }
   // 2) check if user exist and password is correct
-  const user = await User.findOne({ email }).select("+password"); //get back the password to unhide
+  const user = await Auth.findOne({ email }).select("+password"); //get back the password to unhide
   //this function is from userModel
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect Email Or Password", 401));
@@ -80,7 +80,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 2) TOKEN VERIFICATION
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //this will return a promise
   // 3) CHECK IF THE USER STILL EXISTS
-  const currentUser = await User.findById(decoded.id); //This is not a new user, just console the "decoded", there will be an "id". checking the user's existance after verifying "token", and he did't change his password
+  const currentUser = await Auth.findById(decoded.id); //This is not a new user, just console the "decoded", there will be an "id". checking the user's existance after verifying "token", and he did't change his password
   if (!currentUser) {
     return next(new AppError("User in this token no longer exist", 401));
   }
@@ -115,7 +115,7 @@ exports.restrictTo = (...roles) => {
 // forgot password
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user by email
-  const user = await User.findOne({ email: req.body.email });
+  const user = await Auth.findOne({ email: req.body.email });
   if (!user) {
     return next(new AppError("No user found in this email", 404));
   }
@@ -151,7 +151,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .update(req.params.token)
     .digest("hex");
 
-  const user = await User.findOne({
+  const user = await Auth.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() }, // check the token expired or not
   });
@@ -173,7 +173,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await Auth.findById(req.user.id).select("+password");
   // 2) Check if Posted current password is correct
   if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
     return next(new AppError("Your current password is wrong", 401));
@@ -196,7 +196,7 @@ exports.isLoggedIn = async (req, res, next) => {
         process.env.JWT_SECRET
       ); //this will return a promise
       // 2) CHECK IF THE USER STILL EXISTS
-      const currentUser = await User.findById(decoded.id); //This is not a new user, just console the "decoded", there will be an "id". checking the user's existance after verifying "token", and he did't change his password
+      const currentUser = await Auth.findById(decoded.id); //This is not a new user, just console the "decoded", there will be an "id". checking the user's existance after verifying "token", and he did't change his password
       if (!currentUser) {
         return next();
       }
