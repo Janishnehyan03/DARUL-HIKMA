@@ -54,9 +54,20 @@ const issueSchema = new mongoose.Schema({
     ref: "Book",
   },
 });
+const feedbackSchema = new mongoose.Schema({
+  details: {
+    type: String,
+    required: [true, "Please provide details"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
+const Feedbacks = mongoose.model("Feedbacks", feedbackSchema);
 const Issues = mongoose.model("Issues", issueSchema);
 const SubCategory = mongoose.model("SubCategories", subCategorySchema);
 const Book = mongoose.model("Book", bookSchema);
 
-module.exports = { Book, SubCategory, Issues };
+module.exports = { Book, SubCategory, Issues, Feedbacks };

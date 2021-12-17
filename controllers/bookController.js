@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const multer = require("multer");
-const { Book, SubCategory, Issues } = require("../models/bookModel");
+const { Book, SubCategory, Issues, Feedbacks } = require("../models/bookModel");
 const sharp = require("sharp");
 const factory = require("../controllers/handlerFactory");
 const catchAsync = require("../utils/catchAsync");
@@ -175,3 +175,8 @@ exports.deleteStudentCorner = factory.deleteOne(Students);
 exports.addIssue = factory.createOne(Issues);
 exports.getAllIssues = factory.getAll(Issues);
 exports.deleteIssue = factory.deleteOne(Issues);
+
+// feedbacks
+exports.addFeedback = factory.createOne(Feedbacks);
+exports.getAllFeedbacks = factory.getAll(Feedbacks);
+exports.deleteFeedback = factory.deleteOne(Feedbacks);
