@@ -80,7 +80,7 @@ function Nav({ toggle }) {
                 <li>URDU </li>
               </Link>
             </div>
-    
+
             <div className="nav-item">
               <Link to="/kulliyyah" className="nav-link">
                 <li>KULLIYYAH </li>
@@ -105,36 +105,39 @@ function Nav({ toggle }) {
                 </div>
               </Link>
             </div>
-            {!user ? (
-              <div className="search-container">
-                <div className="nav-search">
-                  <input
-                    type="text"
-                    value={wordEntered}
-                    onChange={handleChange}
-                    placeholder="search any books here..."
-                  />
+            <div className="nav-item">
+              <Link to="/all-collections" className="nav-link">
+                <div className="nav-item">
+                  <li>ALL CATEGORIES</li>
                 </div>
-                {filteredData.length > 0 && (
-                  <div className="data-results">
-                    {filteredData.slice(0, 15).map((item, index) => (
-                      <>
-                        <Link
-                          style={{ textDecoration: "none" }}
-                          to={`/view/${item._id}`}
-                        >
-                          <p className="data-item" onClick={clearInput}>
-                            {item.title}
-                          </p>
-                        </Link>
-                      </>
-                    ))}
-                  </div>
-                )}
+              </Link>
+            </div>
+            <div className="search-container">
+              <div className="nav-search">
+                <input
+                  type="text"
+                  value={wordEntered}
+                  onChange={handleChange}
+                  placeholder="search any books here..."
+                />
               </div>
-            ) : (
-              ""
-            )}
+              {filteredData.length > 0 && (
+                <div className="data-results">
+                  {filteredData.slice(0, 15).map((item, index) => (
+                    <>
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to={`/view/${item._id}`}
+                      >
+                        <p className="data-item" onClick={clearInput}>
+                          {item.title}
+                        </p>
+                      </Link>
+                    </>
+                  ))}
+                </div>
+              )}
+            </div>
             {user ? (
               <>
                 <div className="nav-item">
@@ -149,7 +152,7 @@ function Nav({ toggle }) {
           </ul>
           {user && (
             <h5
-              style={{ marginTop: "2rem", position: "absolute", right: "1rem" }}
+              style={{ marginTop: "0", position: "absolute", left: "1rem" }}
             >
               Hi, {user.name}{" "}
             </h5>

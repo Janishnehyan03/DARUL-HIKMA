@@ -7,6 +7,7 @@ function AllCategory() {
   const [searchCategory, setSearchCategory] = useState("");
   const [books, setBooks] = useState([]);
   console.log(books);
+  const baseUrl = "http://192.168.100.2:5000";
   const loadCategories = async () => {
     let response = await Axios.get(`/api/v1/book/category`);
     // console.log(response.data.data);
@@ -42,7 +43,7 @@ function AllCategory() {
         <Link style={{ color: "black" }} to={`/view/` + book._id}>
           <div className="column-card">
             <div className="card-book">
-              <img src={`/uploads/${book.thumbnail}`} alt="" />
+              <img src={`${baseUrl}/${book.thumbnail}`} alt="" />
               <p className="book-title">{book.title}</p>
               <small className="book-category">{book.SubCategory}</small>
             </div>

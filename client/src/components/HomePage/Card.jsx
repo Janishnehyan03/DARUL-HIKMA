@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Card({ title, url, view }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  let baseUrl = "https://darul-hikma.herokuapp.com";
+  let baseUrl = "http://192.168.100.2:5000";
   const loadBooks = async () => {
     try {
       setLoading(true);
@@ -43,9 +43,7 @@ function Card({ title, url, view }) {
                       <img src={`${baseUrl}/${book.thumbnail}`} alt="" />
                       <p className="book-title">{book.title}</p>
                       <small className="book-category">
-                        {book.SubCategory === undefined
-                          ? book.SubCategory
-                          : book.author}
+                        {book.SubCategory ? book.SubCategory : book.author}
                       </small>
                     </div>
                   </div>

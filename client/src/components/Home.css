@@ -14,7 +14,7 @@
   --color-orange: #e46600;
   --color-green: #145350;
   --color-gray: #505050;
-  --color-whiteGray:rgb(255, 255, 255);
+  --color-whiteGray: rgb(255, 255, 255);
 }
 
 /* navbar */
@@ -22,6 +22,7 @@
   position: absolute;
   right: 0px;
   width: 300px;
+  top: 1rem;
 }
 
 .nav-search input {
@@ -307,7 +308,7 @@ label.logo {
 }
 
 .footer-distributed .footer-company-name {
-  color:white;
+  color: white;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
@@ -334,7 +335,7 @@ label.logo {
 
 .footer-distributed .footer-center p {
   display: inline-block;
-  color:rgb(236, 236, 236);
+  color: rgb(236, 236, 236);
   vertical-align: middle;
   margin: 0;
   font-size: 14px;
