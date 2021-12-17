@@ -27,8 +27,6 @@ const bookSchema = new mongoose.Schema({
 
 bookSchema.set("timestamps", true);
 
-const Book = mongoose.model("Book", bookSchema);
-
 const subCategorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -41,6 +39,24 @@ const subCategorySchema = new mongoose.Schema({
   },
 });
 
-const SubCategory = mongoose.model("SubCategories", subCategorySchema);
+const issueSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, "Please provide a title for the issue"],
+    uppercase: true,
+  },
+  description: {
+    type: String,
+    required: [true, "Please provide a description for the issue"],
+  },
+  book: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Book",
+  },
+});
 
-module.exports = { Book, SubCategory };
+const Issues = mongoose.model("Issues", issueSchema);
+const SubCategory = mongoose.model("SubCategories", subCategorySchema);
+const Book = mongoose.model("Book", bookSchema);
+
+module.exports = { Book, SubCategory, Issues };

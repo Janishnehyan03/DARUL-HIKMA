@@ -9,6 +9,8 @@ const bookRoute = require("./routes/bookRoute");
 const authRoute = require("./routes/authRoute");
 const paymentRoute = require("./routes/paymentRoute");
 const videoRoute = require("./routes/videoRoute");
+const userRoute = require("./routes/userRoute");
+const reviewRoute = require("./routes/reviewRoute");
 
 const app = express();
 app.use(cookieParser()); //reads cookie
@@ -39,6 +41,8 @@ app.use("/api/v1/book", bookRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/payment", paymentRoute);
 app.use("/api/v1/video", videoRoute);
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/review", reviewRoute);
 console.log(process.env.NODE_ENV);
 
 // app.all("*", (req, res, next) => {

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "client": "npm start --prefix client",
-    "server": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js "
   },
   "keywords": [],
   "author": "",

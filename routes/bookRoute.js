@@ -73,4 +73,9 @@ router.patch(
   authController.protect,
   bookController.updateStudentCorner
 );
+
+// issues
+router.post("/issues", bookController.addIssue);
+router.get("/issues", bookController.getAllIssues);
+router.delete("/issues/:id", bookController.deleteIssue);
 module.exports = router;
