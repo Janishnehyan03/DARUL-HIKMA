@@ -78,4 +78,10 @@ router.patch(
 router.post("/issues", bookController.addIssue);
 router.get("/issues", bookController.getAllIssues);
 router.delete("/issues/:id", bookController.deleteIssue);
+
+// feedback
+router.post("/feedback", bookController.addFeedback);
+router.get("/feedback", bookController.getAllFeedbacks);
+router.delete("/feedback/:id", bookController.deleteFeedback);
+
 module.exports = router;
