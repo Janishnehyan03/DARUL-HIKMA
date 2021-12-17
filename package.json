@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node server.js",
     "client": "npm start --prefix client",
-    "server": "nodemon server.js",
-    "start": "concurrently \"npm run server \" \"npm run client"
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
