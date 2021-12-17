@@ -12,7 +12,7 @@ if (localStorage.getItem("token")) {
   token = `Bearer ${localStorage.getItem("token").slice(1, -1)}`;
 }
 
-let baseUrl = "https://darul-hikma.herokuapp.com";
+let baseUrl = "http://192.168.100.2:5000";
 // let baseUrl = "http://localhost:8000";
 
 function AddStudentData() {
@@ -125,6 +125,7 @@ function AddStudentData() {
             <tr>
               <th>Index</th>
               <th>Title</th>
+              <th>Author</th>
               <th>Added By </th>
               <th>Delete </th>
             </tr>
@@ -132,6 +133,7 @@ function AddStudentData() {
               <tr>
                 <td>{index + 1}</td>
                 <td>{table.title}</td>
+                <td>{table.author}</td>
 
                 <td>
                   <p>{table.addedBy}</p>

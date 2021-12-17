@@ -9,7 +9,7 @@ import "./SingleView.css";
 function SingleView(props) {
   const [book, setBook] = useState("");
   console.log(book);
-  let baseUrl = "https://darul-hikma.herokuapp.com";
+  let baseUrl = "http://192.168.100.2:5000";
   const getSingleBook = async () => {
     let response = await Axios.get(
       `/api/v1/book/book/` + props.match.params.bookId

@@ -5,9 +5,9 @@ if (localStorage.getItem("token")) {
 }
 
 const Axios = axios.create({
-  // baseURL: "http://192.168.1.72:8000",
+  baseURL: "http://192.168.100.2:5000",
   // baseURL: "http://localhost:8000",
-  baseURL: "https://darul-hikma.herokuapp.com",
+  // baseURL: "http://192.168.100.2:5000",
   withCredentials: true,
   headers: {
     "content-type": "application/json",
