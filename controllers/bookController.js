@@ -86,7 +86,6 @@ exports.resizeImages = async (req, res, next) => {
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
         .toFile(`upload/${newFilename}`);
-
       req.body.images.push(newFilename);
     })
   );

@@ -217,7 +217,6 @@ label.logo {
   padding: 16px;
   text-align: center;
   margin-top: 10px;
-  border-radius: 30px;
   background-color: rgb(255, 255, 255);
   min-height: 475px;
 }
@@ -245,7 +244,6 @@ label.logo {
   object-fit: cover;
   width: 100%;
   height: 300px;
-  border-radius: 25px;
 }
 
 .book-title {

@@ -17,9 +17,10 @@ function LinkCard() {
       <ul className="cards-link">
         {links.map((link) => (
           <div className="card" style={{ textAlign: "center" }}>
-            <div className="card_texts">
-              <h2 className="card_title">{link.name}</h2>
-              <a href={link.url}>{link.url}</a>
+            <div className="card_text">
+              <a href={link.url}>
+                <p className="card_title" style={{fontSize:"20px"}} >{link.name}</p>
+              </a>
             </div>
           </div>
         ))}

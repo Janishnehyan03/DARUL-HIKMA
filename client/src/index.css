@@ -82,10 +82,9 @@ img {
 
 .card_title {
   color: #000000;
-  font-size: 1.1rem;
-  font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
+  padding: 10px;
   margin: 0px;
 }
 

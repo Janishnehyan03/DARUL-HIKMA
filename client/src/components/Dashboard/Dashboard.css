@@ -28,22 +28,18 @@
 }
 
 /* CARDS */
-.link_card_section{
+.link_card_section {
   margin-left: 15%;
 }
-.card_title{
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+.cards-link {
+  align-items: center;
 }
-.card_texts a{
-  background-color: rgb(121, 121, 121);
-  padding: 10px;
-  border-radius: 40px;
-  color: white;
-}
-.card_texts a:hover{
-  background-color: rgb(209, 209, 209);
-  color: rgb(48, 48, 48);
+.card_title {
+  font-size: 30px;
+  background-color: #b4b1b1;
+  border-radius: 10px;
+  margin-top: 4rem;
+  color: rgb(49, 45, 45);
 }
 .cards {
   display: flex;
@@ -75,14 +71,14 @@
   position: relative;
   text-decoration: none;
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 10px 20px;
-  color: rgba(29, 29, 29, 0.9);
+  color: rgba(214, 82, 5, 0.9);
   font-weight: 600;
   background-color: rgb(241, 241, 241);
 }
 .card__link:hover {
-  background-color: rgba(29, 29, 29, 0.9);
+  background-color: rgba(204, 176, 123, 0.9);
   color: white;
   transition: all 0.2s ease-in-out;
 }
@@ -100,11 +96,11 @@
 /* CARD BACKGROUNDS */
 
 .card-1 {
-  background: radial-gradient(#3f3f3f, #484949);
+  background: rgb(236, 155, 88);
   align-items: center;
 }
 .card-2 {
-  background: radial-gradient(#aaaaaa, #cecfcf);
+  background: rgb(236, 142, 65);
   align-items: center;
 }
 

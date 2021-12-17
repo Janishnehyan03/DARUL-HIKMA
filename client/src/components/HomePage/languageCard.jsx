@@ -5,6 +5,8 @@ import { Axios } from "../../Axios";
 function LanguageCard({ url, title }) {
   const [books, setBooks] = useState([]);
   const [category, setCategory] = useState("");
+  let baseUrl = "https://darul-hikma.herokuapp.com";
+
   const loadBooks = async () => {
     let response = await Axios.get(
       `/api/v1/book/language/${url}?category=${category}`
@@ -27,7 +29,7 @@ function LanguageCard({ url, title }) {
           <Link style={{ color: "black" }} to={`/view/${book._id}`}>
             <div className="column-card">
               <div className="card-book">
-                <img src={`/${book.thumbnail}`} />
+                <img src={`${baseUrl}/${book.thumbnail}`} />
                 <h3 className="book-title">{book.title}</h3>
                 <p>{book.author}</p>
                 <small className="book-category">{book.category}</small>

@@ -9,6 +9,7 @@ import "./SingleView.css";
 function SingleView(props) {
   const [book, setBook] = useState("");
   console.log(book);
+  let baseUrl = "https://darul-hikma.herokuapp.com";
   const getSingleBook = async () => {
     let response = await Axios.get(
       `/api/v1/book/book/` + props.match.params.bookId
@@ -35,7 +36,11 @@ function SingleView(props) {
                   <CircularProgress />
                 </div>
               )}
-              <img src={`/uploads/${book.thumbnail}`} alt="" />
+              <img
+                src={`${baseUrl}/${book.thumbnail}`}
+                style={{ width: "350px",marginRight:"2rem"}}
+                alt=""
+              />
               <div>
                 <div className="top">
                   <h3>{book.title}</h3>
@@ -45,7 +50,7 @@ function SingleView(props) {
                 </div>
                 <div className="bottom">
                   <a
-                    href={`/uploads/${book.file}`}
+                    href={`${baseUrl}/${book.file}`}
                     target={"_blank"}
                     rel="noopener  noreferrer"
                   >

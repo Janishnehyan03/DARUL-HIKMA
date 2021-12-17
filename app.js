@@ -52,7 +52,8 @@ console.log(process.env.NODE_ENV);
 //set static folder
 
 process.env.PWD = process.cwd();
-app.use(express.static(path.join(process.env.PWD, 'public')));// app.get("*", (req, res) => {
+app.use(express.static(path.join(process.env.PWD, 'public')));
+// app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 // });
 

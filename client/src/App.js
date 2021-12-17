@@ -58,6 +58,9 @@ function App() {
         <Route path="/english">
           <CategoryCard url="ENGLISH" title="ENGLISH" />
         </Route>
+        <Route path="/urdu">
+          <CategoryCard url="URDU" title="URDU" />
+        </Route>
         <Route path="/kulliyyah">
           <CategoryCard url="KULLIYYAH" title="KULLIYYAH" />
         </Route>

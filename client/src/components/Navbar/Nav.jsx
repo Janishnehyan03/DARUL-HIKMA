@@ -75,6 +75,11 @@ function Nav({ toggle }) {
                 <li>ENGLISH </li>
               </Link>
             </div>
+            <div className="nav-item">
+              <Link to="/urdu" className="nav-link">
+                <li>URDU </li>
+              </Link>
+            </div>
     
             <div className="nav-item">
               <Link to="/kulliyyah" className="nav-link">
