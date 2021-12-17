@@ -34,7 +34,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 //Route
 app.use("/api/v1/book", bookRoute);
 app.use("/api/v1/auth", authRoute);
@@ -52,8 +51,8 @@ console.log(process.env.NODE_ENV);
 
 //set static folder
 
-app.use(express.static(path.join(__dirname, 'public')));
-// app.get("*", (req, res) => {
+process.env.PWD = process.cwd();
+app.use(express.static(path.join(process.env.PWD, 'public')));// app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 // });
 
