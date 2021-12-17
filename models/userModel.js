@@ -18,9 +18,9 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please add a password"],
     select: false,
   },
-  active: {
+  activated: {
     type: Boolean,
-    default: true,
+    default: false,
     select: false,
   },
   createdAt: {

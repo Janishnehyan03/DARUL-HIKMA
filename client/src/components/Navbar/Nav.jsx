@@ -112,6 +112,7 @@ function Nav({ toggle }) {
                 </div>
               </Link>
             </div>
+
             <div className="search-container">
               <div className="nav-search">
                 <input
@@ -151,9 +152,7 @@ function Nav({ toggle }) {
             )}
           </ul>
           {user && (
-            <h5
-              style={{ marginTop: "0", position: "absolute", left: "1rem" }}
-            >
+            <h5 style={{ marginTop: "0", position: "absolute", left: "1rem" }}>
               Hi, {user.name}{" "}
             </h5>
           )}

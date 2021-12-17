@@ -4,6 +4,7 @@ import Card from "./HomePage/Card";
 import Footer from "./HomePage/Footer";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import MiddleSlide from "./HomePage/MiddleSlide";
+import Issue from "./HomePage/Issue";
 
 function Home() {
   return (
@@ -23,6 +24,7 @@ function Home() {
       />
       <MiddleSlide image={"slide2.jpg"} />
       <Card title={"JOURNALS"} view={"journals"} url="JOURNAL" />
+      <Issue />
       <Footer />
     </div>
   );
