@@ -18,21 +18,12 @@ function Dashboard() {
             </p>
           </Link>
         </div>
-        <div className="card card-2">
+        <div className="card card-1">
           <h1 className="card__head">Users </h1>
           <h2 className="card__head"></h2>
           <Link to="/add-user">
             <p className="card__apply">
               <button className="card__link">Add User</button>
-            </p>
-          </Link>
-        </div>
-        <div className="card card-2">
-          <h1 className="card__head">Videos </h1>
-          <h2 className="card__head"></h2>
-          <Link to="/add-video">
-            <p className="card__apply">
-              <button className="card__link">Add Video</button>
             </p>
           </Link>
         </div>
@@ -54,7 +45,7 @@ function Dashboard() {
             </p>
           </Link>
         </div>
-        <div className="card card-2">
+        <div className="card card-1">
           <h1 className="card__head">Sub Categories </h1>
           <h2 className="card__head"></h2>
           <Link to="/sub-category">
@@ -69,6 +60,15 @@ function Dashboard() {
           <Link to="/add-studentCorner">
             <p className="card__apply">
               <button className="card__link">Create Student Corner</button>
+            </p>
+          </Link>
+        </div>
+        <div className="card card-1">
+          <h1 className="card__head">Feedbacks</h1>
+          <h2 className="card__head"></h2>
+          <Link to="/feedbacks">
+            <p className="card__apply">
+              <button className="card__link">View Feedbacks</button>
             </p>
           </Link>
         </div>

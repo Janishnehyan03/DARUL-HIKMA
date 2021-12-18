@@ -73,12 +73,12 @@
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
-  color: rgba(214, 82, 5, 0.9);
+  color: rgba(53, 51, 51, 0.9);
   font-weight: 600;
   background-color: rgb(241, 241, 241);
 }
 .card__link:hover {
-  background-color: rgba(204, 176, 123, 0.9);
+  background-color: rgba(126, 126, 126, 0.9);
   color: white;
   transition: all 0.2s ease-in-out;
 }
@@ -96,11 +96,7 @@
 /* CARD BACKGROUNDS */
 
 .card-1 {
-  background: rgb(236, 155, 88);
-  align-items: center;
-}
-.card-2 {
-  background: rgb(236, 142, 65);
+  background: rgb(37, 37, 37);
   align-items: center;
 }
 

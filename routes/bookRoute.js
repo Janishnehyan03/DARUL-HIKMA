@@ -39,10 +39,10 @@ router.post(
 router.post(
   "/link",
   authController.protect,
-  bookController.upload.single("linkImage"),
   bookController.createLink
 );
 router.get("/link", bookController.getAllLinks);
+router.get("/link/:id", bookController.getLink);
 router.delete("/link/:id", authController.protect, bookController.deleteLink);
 router.patch("/link/:id", authController.protect, bookController.updateLink);
 router.post(

@@ -75,11 +75,11 @@ function Nav({ toggle }) {
                 <li>ENGLISH </li>
               </Link>
             </div>
-            <div className="nav-item">
+            {/* <div className="nav-item">
               <Link to="/urdu" className="nav-link">
                 <li>URDU </li>
               </Link>
-            </div>
+            </div> */}
 
             <div className="nav-item">
               <Link to="/kulliyyah" className="nav-link">
@@ -100,16 +100,17 @@ function Nav({ toggle }) {
             </div>
             <div className="nav-item">
               <Link to="/all-collections" className="nav-link">
-                <div className="nav-item">
-                  <li>ALL CATEGORIES</li>
-                </div>
+                <li>ALL CATEGORIES</li>
               </Link>
             </div>
-            <div className="nav-item">
-              <Link to="/all-collections" className="nav-link">
-                <div className="nav-item">
-                  <li>ALL CATEGORIES</li>
-                </div>
+            <div
+              className="nav-item"
+              style={{ marginTop: "60px", marginLeft: "5rem" }}
+            >
+              <Link to="/user-login">
+                <button class="bg-green-500 hover:bg-green-400 text-white py-2 px-4  rounded-full">
+                  Sign In
+                </button>
               </Link>
             </div>
 
@@ -139,6 +140,7 @@ function Nav({ toggle }) {
                 </div>
               )}
             </div>
+
             {user ? (
               <>
                 <div className="nav-item">
@@ -151,6 +153,7 @@ function Nav({ toggle }) {
               ""
             )}
           </ul>
+
           {user && (
             <h5 style={{ marginTop: "0", position: "absolute", left: "1rem" }}>
               Hi, {user.name}{" "}

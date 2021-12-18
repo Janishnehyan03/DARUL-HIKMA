@@ -5,26 +5,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Axios } from "../../Axios";
 import { CircularProgress } from "@material-ui/core";
-import axios from "axios";
-
-let token;
-if (localStorage.getItem("token")) {
-  token = `Bearer ${localStorage.getItem("token").slice(1, -1)}`;
-}
-
-let baseUrl = "http://192.168.100.2:5000";
-// let baseUrl = "http://localhost:8000";
+import { Link } from "react-router-dom";
 
 function AddLink() {
   const [url, setUrl] = useState("");
-  const [linkImage, setImage] = useState("");
+  const [details, setDetails] = useState("");
   const [name, setName] = useState("");
-  let formData = new FormData();
-  formData.append("url", url);
-  formData.append("name", name);
-  formData.append("linkImage", linkImage);
   const [loading, setLoading] = useState(false);
   const [tableData, setTableData] = useState([]);
+
   console.log(tableData);
   const getLinks = async () => {
     let response = await Axios.get("/api/v1/book/link").catch((err) => {
@@ -33,14 +22,18 @@ function AddLink() {
     setTableData(response.data.data);
     console.log(response.data.data);
   };
-  const deleteLink = async (id,linkName) => {
+  const deleteLink = async (id, linkName) => {
     try {
       if (window.confirm(`Are you sure you want to delete ${linkName}?`)) {
         await Axios.delete(`/api/v1/book/link/${id}`);
+        setName("");
+        setUrl("");
+        setDetails("");
         toast.info("successfully deleted", {
           position: "top-center",
           autoClose: 3000,
         });
+
         getLinks();
       }
     } catch (error) {
@@ -54,18 +47,16 @@ function AddLink() {
     try {
       e.preventDefault();
       setLoading(true);
-      let data = await axios({
-        url: `${baseUrl}/api/v1/book/link`,
-        method: "POST",
-        data: formData,
-        withCredentials: true,
-        headers: {
-          "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          authorization: token,
-        },
+      let data = await Axios.post("/api/v1/book/link", {
+        url,
+        details,
+        name,
       });
-      getLinks()
+      setLoading(false);
+      setName("");
+      setUrl("");
+      setDetails("");
+      getLinks();
       console.log(data.data);
       setLoading(false);
       toast.success("successfully added", {
@@ -99,16 +90,23 @@ function AddLink() {
                 placeholder="Website Name "
                 required
                 name="name"
+                value={name}
               />
               <input
                 onChange={(e) => setUrl(e.target.value)}
                 type="text"
                 placeholder="paste your URL here..."
+                required
+                value={url}
               />
-              <input
-                onChange={(e) => setImage(e.target.files[0])}
-                type="file"
-              />
+              <textarea
+                onChange={(e) => setDetails(e.target.value)}
+                type="text"
+                placeholder="details"
+                class="resize-x rounded-md w-full"
+                required
+                value={details}
+              ></textarea>
               {loading ? (
                 <>
                   {" "}
@@ -127,39 +125,47 @@ function AddLink() {
           <tbody>
             <tr>
               <th>Index</th>
-              <th>Img</th>
-              <th>Name</th>
               <th>Url</th>
-              <th>Delete </th>
+              <th>Details</th>
               <th>Added By </th>
+              <th>Delete </th>
+              <th>Edit </th>
             </tr>
             {tableData.map((table, index) => (
               <tr>
                 <td>{index + 1}</td>
                 <td>
-                  {" "}
-                  <img
-                    src={`/uploads/${table.linkImage}`}
-                    style={{ height: "50px" }}
-                    alt=""
-                  />{" "}
-                </td>
-                <td>{table.name}</td>
-                <td>
-                  <a href={table.url} target="_blank" rel="noopener noreferrer">
-                    {table.url}
+                  <a
+                    href={table.url}
+                    className="max-w-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white w-48">
+                      {table.name}
+                    </button>
                   </a>
                 </td>
                 <td>
+                  <p> {table.details ? table.details.substring(0, 50) : ""}</p>
+                </td>
+                <td>
+                  <p>{table.addedBy}</p>
+                </td>
+                <td>
                   <button
-                    className="btn delete"
-                    onClick={() => deleteLink(table._id,table.name)}
+                    className="bg-red-500 hover:bg-red-700 text-white w-28"
+                    onClick={() => deleteLink(table._id, table.name)}
                   >
                     delete
                   </button>
                 </td>
                 <td>
-                  <p>{table.addedBy}</p>
+                  <Link to={`/edit-link/${table._id}`}>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white w-28">
+                      edit
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

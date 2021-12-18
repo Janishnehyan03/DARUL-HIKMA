@@ -21,6 +21,11 @@ import LinkCard from "./components/HomePage/LinkCard";
 import StudentCorner from "./components/Dashboard/StudentCorner";
 import AddStudentData from "./components/AddBook.jsx/AddStudentData";
 import AllCategory from "./components/HomePage/AllCategory";
+import FeedbackTable from "./components/Dashboard/FeedbackTable";
+import EditLink from "./components/Edits/EditLink";
+import UserProtected from "./components/UserProtected";
+import UserLogin from "./components/Normal User/UserLogin";
+import UserSignup from "./components/Normal User/UserSignup";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,6 +102,18 @@ function App() {
         </Route>
         <Route path="/add-studentCorner">
           <ProtectedRoutes component={AddStudentData} />
+        </Route>
+        <Route path="/feedbacks">
+          <ProtectedRoutes component={FeedbackTable} />
+        </Route>
+        <Route path="/edit-link">
+          <ProtectedRoutes component={EditLink} />
+        </Route>
+        <Route path={"/user-login"}>
+          <UserLogin />
+        </Route>
+        <Route path={"/signup"}>
+          <UserSignup />
         </Route>
         <Route path="*">
           <ErrorPage />

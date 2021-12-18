@@ -27,9 +27,9 @@ const linkSchema = new mongoose.Schema({
     required: [true, "Please provide a name"],
     unique: [true, "Already added"],
   },
-  linkImage: {
-    required: [true, "Please upload an image"],
+  details: {
     type: String,
+    required: [true, "Please provide a description"],
   },
   addedBy: String,
 });
@@ -133,8 +133,8 @@ exports.createLink = async (req, res) => {
     let bookData = await Links.create({
       url: req.body.url,
       name: req.body.name,
-      linkImage: req.file.originalname,
       addedBy: req.user.email,
+      details: req.body.details,
     });
     res.status(200).json({
       status: "success",
@@ -144,9 +144,13 @@ exports.createLink = async (req, res) => {
     console.log(error);
   }
 };
+
 exports.getAllLinks = factory.getAll(Links);
+exports.getLink = factory.getOne(Links);
 exports.updateLink = factory.updateOne(Links);
 exports.deleteLink = factory.deleteOne(Links);
+
+
 exports.createSubCategory = factory.createOne(SubCategory);
 exports.deleteSubCategory = factory.deleteOne(SubCategory);
 exports.getAllSubCategory = factory.getAll(SubCategory);

@@ -4,7 +4,7 @@ import Card from "./HomePage/Card";
 import Footer from "./HomePage/Footer";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import MiddleSlide from "./HomePage/MiddleSlide";
-import Issue from "./HomePage/Issue";
+import Issue from "./HomePage/Feedbacks";
 
 function Home() {
   return (
