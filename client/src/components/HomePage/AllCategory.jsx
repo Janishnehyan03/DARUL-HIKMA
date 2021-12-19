@@ -7,7 +7,7 @@ function AllCategory() {
   const [searchCategory, setSearchCategory] = useState("");
   const [books, setBooks] = useState([]);
   console.log(books);
-  const baseUrl = "http://192.168.100.2:5000";
+  const baseUrl = "http://192.168.100.32:5000";
   const loadCategories = async () => {
     let response = await Axios.get(`/api/v1/book/category`);
     // console.log(response.data.data);

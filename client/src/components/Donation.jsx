@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-let baseUrl = "http://192.168.100.2:5000";
+let baseUrl = "http://192.168.100.32:5000";
 // let baseUrl = "http://localhost:8000";
 
 function Donation() {

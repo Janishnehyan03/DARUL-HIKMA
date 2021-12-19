@@ -9,12 +9,13 @@ import "./SingleView.css";
 function SingleView(props) {
   const [book, setBook] = useState("");
   const [liked, setLiked] = useState(false);
+  console.log(liked);
   let user = localStorage.getItem("localUser");
   if (user) {
     user = JSON.parse(user);
     console.log(user._id);
   }
-  let baseUrl = "http://192.168.100.2:5000";
+  let baseUrl = "http://192.168.100.32:5000";
   const getSingleBook = async () => {
     let response = await Axios.get(
       `/api/v1/book/book/` + props.match.params.bookId
@@ -22,11 +23,32 @@ function SingleView(props) {
     console.log(response.data);
     setBook(response.data.data);
   };
-  const checkLiked = async () => {};
+  const checkLiked = () => {
+    if (book.likes) {
+      console.log(book.likes);
+      if (user) {
+        if (book.likes.includes(user._id)) {
+          setLiked(true);
+          console.log("liked");
+        } else {
+          setLiked(false);
+          console.log("not liked");
+        }
+      }
+    }
+  };
   const likeBook = async () => {
     try {
       let response = await Axios.post(`/api/v1/review/likeBook/${book._id}`);
-      console.log(response);
+      getSingleBook();
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+  const unlikeBook = async () => {
+    try {
+      let response = await Axios.post(`/api/v1/review/unlikeBook/${book._id}`);
+      console.log(response.data);
       getSingleBook();
     } catch (error) {
       console.log(error.response);
@@ -34,8 +56,10 @@ function SingleView(props) {
   };
   useEffect(() => {
     getSingleBook();
-    checkLiked();
   }, []);
+  useEffect(() => {
+    checkLiked();
+  }, [book]);
   return (
     <div>
       <HelmetProvider>
@@ -49,31 +73,29 @@ function SingleView(props) {
         <img
           className="w-full"
           src={`${baseUrl}/${book.thumbnail}`}
-          alt="Sunset in the mountains"
+          alt={book.title}
         />
         {user ? (
           <>
-            <Button
-              style={{ float: "right", margin: "10px", borderRadius: "10px" }}
-              onClick={likeBook}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-11"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                style={{ backgroundColor: "#f7f7f7", borderRadius: "10px" }}
+            {liked ? (
+              <Button
+                className="like-button"
+                variant="contained"
+                color="secondary"
+                onClick={unlikeBook}
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="like"
-                  d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-                />
-              </svg>
-            </Button>
+                Unlike
+              </Button>
+            ) : (
+              <Button
+                className="like-button"
+                variant="contained"
+                color="primary"
+                onClick={likeBook}
+              >
+                Like
+              </Button>
+            )}
             {book.likes ? (
               <h1 style={{ marginLeft: "4rem" }}>
                 {book.likes.length} {book.likes.length === 1 ? "like" : "likes"}
@@ -81,7 +103,6 @@ function SingleView(props) {
             ) : (
               ""
             )}
-            
           </>
         ) : (
           <>

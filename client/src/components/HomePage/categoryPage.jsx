@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 function CategoryCard({ url, title }) {
   const [books, setBooks] = useState([]);
   console.log(loading);
-  const baseUrl = 'http://192.168.100.2:5000'
+  const baseUrl = 'http://192.168.100.32:5000'
   const loadBooks = async () => {
     let response = await Axios.get(`/api/v1/book?category=${url}`);
     console.log(response.data.data.languages);

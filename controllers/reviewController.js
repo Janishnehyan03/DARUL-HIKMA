@@ -35,3 +35,23 @@ exports.likeBook = catchAsync(async (req, res, next) => {
     },
   });
 });
+exports.unlikeBook = catchAsync(async (req, res, next) => {
+  const book = await Book.findById(req.params.id);
+  if (
+    book.likes.filter((like) => like.toString() === req.user._id.toString())
+      .length === 0
+  ) {
+    return next(new AppError("You have not yet liked this review", 400));
+  }
+  const removeIndex = book.likes
+    .map((like) => like.toString())
+    .indexOf(req.user._id.toString());
+  book.likes.splice(removeIndex, 1);
+  await book.save();
+  res.status(200).json({
+    status: "success",
+    data: {
+      book,
+    },
+  });
+});

@@ -12,7 +12,7 @@ if (localStorage.getItem("token")) {
   token = `Bearer ${localStorage.getItem("token").slice(1, -1)}`;
 }
 
-let baseUrl = "http://192.168.100.2:5000";
+let baseUrl = "http://192.168.100.32:5000";
 // let baseUrl = "http://localhost:8000";
 
 function AddStudentData() {

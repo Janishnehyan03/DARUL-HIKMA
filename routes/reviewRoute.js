@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const reviewController = require("../controllers/reviewController");
-const userController=require("../controllers/userController");
+const userController = require("../controllers/userController");
 
 router.post(
   "/writeReview",
@@ -17,10 +17,10 @@ router.post(
   userController.protect,
   reviewController.updateReview
 );
+router.post("/likeBook/:id", userController.protect, reviewController.likeBook);
 router.post(
-  '/likeBook/:id',
+  "/unlikeBook/:id",
   userController.protect,
-  reviewController.likeBook
-)
-
+  reviewController.unlikeBook
+);
 module.exports = router;

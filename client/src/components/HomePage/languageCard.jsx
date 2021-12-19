@@ -5,7 +5,7 @@ import { Axios } from "../../Axios";
 function LanguageCard({ url, title }) {
   const [books, setBooks] = useState([]);
   const [category, setCategory] = useState("");
-  let baseUrl = "http://192.168.100.2:5000";
+  let baseUrl = "http://192.168.100.32:5000";
 
   const loadBooks = async () => {
     let response = await Axios.get(
