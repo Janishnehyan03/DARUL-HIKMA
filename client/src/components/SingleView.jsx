@@ -1,10 +1,8 @@
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { Axios } from "../Axios";
-import AddComment from "./Normal User/AddComment";
 import CommentTable from "./Normal User/CommentTable";
 import "./SingleView.css";
 
@@ -41,7 +39,7 @@ function SingleView(props) {
   };
   const likeBook = async () => {
     try {
-      let response = await Axios.post(`/api/v1/review/likeBook/${book._id}`);
+      await Axios.post(`/api/v1/review/likeBook/${book._id}`);
       getSingleBook();
     } catch (error) {
       console.log(error.response);

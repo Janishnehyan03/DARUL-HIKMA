@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema({
   activated: {
     type: Boolean,
     default: false,
-    select: false,
   },
   createdAt: {
     type: Date,

@@ -30,10 +30,13 @@ function UserSignup() {
       setPasswordConfirm("");
       setLoading(false);
       if (response.data) {
-        toast.success("Account Created", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 5000,
-        });
+        toast.success(
+          "Account Created, please contact admin to activate your account..",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: false,
+          }
+        );
       }
     } catch (error) {
       console.log(error.response);

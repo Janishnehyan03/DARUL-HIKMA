@@ -55,6 +55,11 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect Email Or Password", 401));
   }
+  if (user.activated === false) {
+    return next(
+      new AppError("account is not activated, please contact admin", 401)
+    );
+  }
   sendToken(user, 200, req, res);
 });
 
@@ -99,5 +104,31 @@ exports.addReview = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: "success",
     review,
+  });
+});
+exports.getAllUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find().sort({ activated: false, createdAt: -1 });
+  res.status(200).json({
+    status: "success",
+    users,
+  });
+});
+exports.activateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("No user found with that ID", 404));
+  await User.findByIdAndUpdate(req.params.id, { activated: true });
+
+  res.status(200).json({
+    status: "success",
+    user,
+  });
+});
+exports.deactivateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("No user found with that ID", 404));
+  await User.findByIdAndUpdate(req.params.id, { activated: false });
+  res.status(200).json({
+    status: "success",
+    user,
   });
 });

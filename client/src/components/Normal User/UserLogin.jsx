@@ -43,7 +43,7 @@ function UserLogin() {
       setLoading(false);
       toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000,
+        autoClose: false,
       });
     }
   };

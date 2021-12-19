@@ -72,6 +72,15 @@ function Dashboard() {
             </p>
           </Link>
         </div>
+        <div className="card card-1">
+          <h1 className="card__head">Users</h1>
+          <h2 className="card__head"></h2>
+          <Link to="/users">
+            <p className="card__apply">
+              <button className="card__link">Activate Accounts </button>
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
   );

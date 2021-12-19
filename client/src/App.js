@@ -26,6 +26,7 @@ import EditLink from "./components/Edits/EditLink";
 import UserProtected from "./components/UserProtected";
 import UserLogin from "./components/Normal User/UserLogin";
 import UserSignup from "./components/Normal User/UserSignup";
+import AllUsers from "./components/Dashboard/AllUsers";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,6 +110,9 @@ function App() {
         </Route>
         <Route path="/edit-link">
           <ProtectedRoutes component={EditLink} />
+        </Route>
+        <Route path="/users">
+          <ProtectedRoutes component={AllUsers} />
         </Route>
         <Route path={"/user-login"}>
           <UserLogin />

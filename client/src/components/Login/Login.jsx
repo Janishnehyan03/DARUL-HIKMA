@@ -65,7 +65,7 @@ function Login() {
         <div className="form">
           {isLoading && <LinearProgress />}
           <form className="login-form">
-            <h1 className="">Login </h1>
+            <h1 className="">Admin Login </h1>
             {error && <Alert severity="error">{error}</Alert>}
             <input
               type="text"
