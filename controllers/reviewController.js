@@ -35,13 +35,3 @@ exports.likeBook = catchAsync(async (req, res, next) => {
     },
   });
 });
-exports.checkLiked = catchAsync(async (req, res, next) => {
-  let Book = await Book.findById(req.params.id);
-  if (
-    Book.likes.filter((like) => like.toString() === req.user._id.toString())
-  ) {
-    console.log("liked");
-  } else {
-    console.log("not liked");
-  }
-});

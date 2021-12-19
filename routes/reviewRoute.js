@@ -22,8 +22,5 @@ router.post(
   userController.protect,
   reviewController.likeBook
 )
-router.get(
-  '/checkLiked/:id',
-  reviewController.checkLiked
-)
+
 module.exports = router;
