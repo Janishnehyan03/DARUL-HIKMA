@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const reviewSchema = new mongoose.Schema({
-  review: {
+  comment: {
     type: String,
     required: [true, "review cannot be empty"],
   },
@@ -16,12 +16,6 @@ const reviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  likes: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
 });
 const Review = mongoose.model("Review", reviewSchema);
 module.exports = Review;

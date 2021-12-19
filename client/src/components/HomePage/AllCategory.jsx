@@ -7,7 +7,7 @@ function AllCategory() {
   const [searchCategory, setSearchCategory] = useState("");
   const [books, setBooks] = useState([]);
   console.log(books);
-  const baseUrl = "http://192.168.100.32:5000";
+  const baseUrl = "http://192.168.100.2:5000";
   const loadCategories = async () => {
     let response = await Axios.get(`/api/v1/book/category`);
     // console.log(response.data.data);
@@ -25,7 +25,9 @@ function AllCategory() {
   }, [searchCategory]);
   return (
     <div>
-      <h3 style={{marginLeft:'2rem',fontSize:'24px'}} >{books.length} documents</h3>
+      <h3 style={{ marginLeft: "2rem", fontSize: "24px" }}>
+        {books.length} documents
+      </h3>
 
       <select
         className="category-select"
@@ -46,6 +48,12 @@ function AllCategory() {
               <img src={`${baseUrl}/${book.thumbnail}`} alt="" />
               <p className="book-title">{book.title}</p>
               <small className="book-category">{book.SubCategory}</small>
+              {book.likes ? (
+                <p className="mt-5">
+                  {book.likes.length}{" "}
+                  {book.likes.length === 1 ? "like" : "likes"}{" "}
+                </p>
+              ) : null}
             </div>
           </div>
         </Link>

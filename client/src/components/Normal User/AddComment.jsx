@@ -1,24 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Axios } from "../../Axios";
 
-const ratingChanged = (newRating) => {
-  console.log(newRating);
-};
-
 function AddComment({ bookId }) {
-  const addComment = async () => {
-    let response = await Axios.post(
-      `/api/v1/book/book/` + bookId + "/comment",
-      {
-        comment: "test comment",
-      }
-    );
-    console.log(response);
+  const [comment, setComment] = useState("");
+  const addComment = async (e) => {
+    try {
+      e.preventDefault();
+      let response = await Axios.post(`/api/v1/review/comment/${bookId}`, {
+        comment,
+        book: bookId,
+      });
+      console.log(response);
+      setComment("");
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
     <div>
-      <div className="mx-auto  shadow-lg  mx-8 mb-4 max-w-lg inset-x-0 float-right	">
+      <div className="mx-auto mt-4  shadow-lg  mx-8 mb-4 max-w-lg inset-x-0 float-right	">
         <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
           <div className="flex flex-wrap -mx-3 mb-6">
             <h2 className="px-4 pt-3 pb-2 text-gray-800 text-md">
@@ -30,7 +31,8 @@ function AddComment({ bookId }) {
                 name="body"
                 placeholder="Type Your Comment"
                 required
-                defaultValue={""}
+                onChange={(e) => setComment(e.target.value)}
+                value={comment}
               />
             </div>
             <div className="w-full md:w-full flex items-start md:w-full px-3">
@@ -38,7 +40,6 @@ function AddComment({ bookId }) {
                 <button
                   type="submit"
                   className="bg-gray-400 text-white font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-700 hover:text-white"
-                  defaultValue="Post Comment"
                   onClick={addComment}
                 >
                   submit

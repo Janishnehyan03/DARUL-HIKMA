@@ -65,7 +65,9 @@ exports.editCategory = factory.updateOne(Category);
 exports.getAllLanguages = async (req, res) => {
   let query = req.params.language;
   console.log(query);
-  const languages = await Book.find({ category: { $regex: query } });
+  const languages = await Book.find({ category: { $regex: query } }).sort({
+    likes: -1,
+  });
   res.status(200).json({
     status: "success",
     length: languages.length,
@@ -149,7 +151,6 @@ exports.getAllLinks = factory.getAll(Links);
 exports.getLink = factory.getOne(Links);
 exports.updateLink = factory.updateOne(Links);
 exports.deleteLink = factory.deleteOne(Links);
-
 
 exports.createSubCategory = factory.createOne(SubCategory);
 exports.deleteSubCategory = factory.deleteOne(SubCategory);

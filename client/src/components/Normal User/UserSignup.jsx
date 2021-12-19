@@ -30,7 +30,7 @@ function UserSignup() {
       setPasswordConfirm("");
       setLoading(false);
       if (response.data) {
-        toast.success("Signup request sent to Admin", {
+        toast.success("Account Created", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000,
         });

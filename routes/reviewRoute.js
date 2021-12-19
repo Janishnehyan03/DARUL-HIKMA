@@ -3,15 +3,12 @@ const reviewController = require("../controllers/reviewController");
 const userController = require("../controllers/userController");
 
 router.post(
-  "/writeReview",
+  "/comment/:id",
   userController.protect,
   reviewController.writeReview
 );
-router.post(
-  "/deleteReview",
-  userController.protect,
-  reviewController.deleteReview
-);
+router.get("/:id", reviewController.getReviews);
+router.delete("/:id", userController.protect, reviewController.deleteReview);
 router.post(
   "/updateReview",
   userController.protect,

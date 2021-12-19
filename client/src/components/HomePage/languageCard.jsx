@@ -5,7 +5,7 @@ import { Axios } from "../../Axios";
 function LanguageCard({ url, title }) {
   const [books, setBooks] = useState([]);
   const [category, setCategory] = useState("");
-  let baseUrl = "http://192.168.100.32:5000";
+  let baseUrl = "http://192.168.100.2:5000";
 
   const loadBooks = async () => {
     let response = await Axios.get(
@@ -33,6 +33,12 @@ function LanguageCard({ url, title }) {
                 <h3 className="book-title">{book.title}</h3>
                 <p>{book.author}</p>
                 <small className="book-category">{book.category}</small>
+                {book.likes ? (
+                  <p className="mt-5">
+                    {book.likes.length}{" "}
+                    {book.likes.length === 1 ? "like" : "likes"}{" "}
+                  </p>
+                ) : null}
               </div>
             </div>
           </Link>

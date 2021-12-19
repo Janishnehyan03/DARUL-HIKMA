@@ -44,12 +44,28 @@ function Feedbacks() {
               onChange={(e) => setDetails(e.target.value)}
             />
           </div>
-          <div className="w-full md:w-full flex items-start md:w-full px-3">
+          <div class="flex items-start w-1/2 text-gray-700 px-2 mr-auto m-3">
+            <svg
+              fill="none"
+              class="w-5 h-5 text-red-600 mr-1"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <p class="text-xs md:text-sm pt-px">Available for admins</p>
+          </div>
+          <div className="w-full md:w-full  flex items-start md:w-full px-3">
             <div className="-mr-1 ">
               <input
                 onClick={(e) => submitFeedback(e)}
                 type="submit"
-                className="cursor-pointer bg-indigo-500 text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-200 hover:text-gray-700"
+                className="cursor-pointer bg-black text-white font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-200 hover:text-gray-700"
                 defaultValue="Post Comment"
               />
             </div>

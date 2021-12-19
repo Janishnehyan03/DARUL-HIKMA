@@ -6,8 +6,7 @@ const AppError = require("../utils/appError");
 
 exports.writeReview = catchAsync(async (req, res, next) => {
   const review = await Review.create({
-    review: req.body.review,
-    rating: req.body.rating,
+    comment: req.body.comment,
     book: req.body.book,
     user: req.user._id,
   });
@@ -16,6 +15,21 @@ exports.writeReview = catchAsync(async (req, res, next) => {
     data: review,
   });
 });
+exports.getReviews = catchAsync(async (req, res, next) => {
+  const reviews = await Review.find({ book: req.params.id })
+    .populate({
+      path: "user",
+      select: "name",
+    })
+    .sort({ createdAt: -1 });
+  console.log(reviews);
+  res.status(200).json({
+    status: "success",
+    results: reviews.length,
+    data: reviews,
+  });
+});
+
 exports.deleteReview = factory.deleteOne(Review);
 exports.updateReview = factory.updateOne(Review);
 exports.likeBook = catchAsync(async (req, res, next) => {

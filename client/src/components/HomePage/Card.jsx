@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Card({ title, url, view }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  let baseUrl = "http://192.168.100.32:5000";
+  let baseUrl = "http://192.168.100.2:5000";
   const loadBooks = async () => {
     try {
       setLoading(true);
@@ -45,6 +45,12 @@ function Card({ title, url, view }) {
                       <small className="book-category">
                         {book.SubCategory ? book.SubCategory : book.author}
                       </small>
+                      {book.likes ? (
+                        <p className="mt-5">
+                          {book.likes.length}{" "}
+                          {book.likes.length === 1 ? "like" : "likes"}{" "}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </Link>

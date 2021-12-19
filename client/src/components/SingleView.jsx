@@ -2,8 +2,10 @@ import { Button, CircularProgress } from "@material-ui/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import { Axios } from "../Axios";
 import AddComment from "./Normal User/AddComment";
+import CommentTable from "./Normal User/CommentTable";
 import "./SingleView.css";
 
 function SingleView(props) {
@@ -15,7 +17,7 @@ function SingleView(props) {
     user = JSON.parse(user);
     console.log(user._id);
   }
-  let baseUrl = "http://192.168.100.32:5000";
+  let baseUrl = "http://192.168.100.2:5000";
   const getSingleBook = async () => {
     let response = await Axios.get(
       `/api/v1/book/book/` + props.match.params.bookId
@@ -54,6 +56,9 @@ function SingleView(props) {
       console.log(error.response);
     }
   };
+  const goToSignIn = () => {
+    props.history.push("/user-login");
+  };
   useEffect(() => {
     getSingleBook();
   }, []);
@@ -68,7 +73,9 @@ function SingleView(props) {
         </Helmet>
       </HelmetProvider>
       {/* comment  */}
-      <AddComment />
+
+      <CommentTable bookId={book._id} />
+
       <div className="max-w-sm rounded shadow-lg m-4 content-center">
         <img
           className="w-full"
@@ -77,36 +84,52 @@ function SingleView(props) {
         />
         {user ? (
           <>
+            {book.likes && (
+              <h1 style={{ background: "#FEE3EC" }}>
+                {book.likes.length} {book.likes.length === 1 ? "like" : "likes"}
+              </h1>
+            )}
             {liked ? (
               <Button
                 className="like-button"
                 variant="contained"
                 color="secondary"
+                style={{ margin: "10px" }}
                 onClick={unlikeBook}
               >
                 Unlike
               </Button>
             ) : (
               <Button
-                className="like-button"
+                className="like-button "
                 variant="contained"
                 color="primary"
                 onClick={likeBook}
+                style={{ margin: "10px" }}
               >
                 Like
               </Button>
             )}
+          </>
+        ) : (
+          <>
             {book.likes ? (
-              <h1 style={{ marginLeft: "4rem" }}>
+              <h1 style={{ background: "#FEE3EC" }}>
                 {book.likes.length} {book.likes.length === 1 ? "like" : "likes"}
               </h1>
             ) : (
               ""
             )}
-          </>
-        ) : (
-          <>
-            <small>please create an account for more options..</small>
+
+            <Button
+              className="like-button"
+              variant="contained"
+              onClick={goToSignIn}
+              color="primary"
+              style={{ margin: "10px" }}
+            >
+              Like
+            </Button>
           </>
         )}
         <div className="px-6 pt-4 pb-2">
@@ -120,9 +143,10 @@ function SingleView(props) {
             <small onClick={checkLiked}>added on:</small>{" "}
             {moment(book.createdAt).format("LL")}
           </p>
-        </div>
-        <div className="px-6 py-4 ">
-          <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-8 rounded inline-flex items-center">
+          <button
+            style={{ marginLeft: "30rem", position: "absolute", top: "40rem" }}
+            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-8 rounded  items-center"
+          >
             <span>Read Now</span>
           </button>
         </div>
