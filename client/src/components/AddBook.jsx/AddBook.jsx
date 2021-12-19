@@ -25,7 +25,7 @@ function AddBook() {
   const [tableData, setTableData] = useState([]);
   console.log(tableData);
   const getBook = async () => {
-    let response = await Axios.get("/api/v1/book/", {
+    let response = await Axios.get("/api/v1/book?latest=-createdAt", {
       withCredentials: true,
     }).catch((err) => {
       console.log(err.response);

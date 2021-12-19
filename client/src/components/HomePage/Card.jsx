@@ -3,7 +3,7 @@ import { Axios } from "../../Axios";
 import "../Home.css";
 import { CircularProgress } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 function Card({ title, url, view }) {
   const [books, setBooks] = useState([]);

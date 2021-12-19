@@ -30,6 +30,9 @@ function CommentTable() {
       console.log(error.response);
     }
   };
+  const goToSignIn = () => {
+    window.location.href = "/user-login";
+  };
   const deleteComment = async (commentId) => {
     try {
       if (window.confirm("Are you sure you want to delete this comment?")) {
@@ -77,7 +80,6 @@ function CommentTable() {
           )}
         </div>
         <hr />
-        {/* <AddComment bookId={bookId} /> */}
         <div className="mx-auto mt-4  shadow-lg  mx-8 mb-4 max-w-lg inset-x-0 float-right	">
           <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
             <div className="flex flex-wrap -mx-3 mb-6">
@@ -96,13 +98,23 @@ function CommentTable() {
               </div>
               <div className="w-full md:w-full flex items-start md:w-full px-3">
                 <div className="-mr-1">
-                  <button
-                    type="submit"
-                    className="bg-gray-400 text-white font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-700 hover:text-white"
-                    onClick={addComment}
-                  >
-                    submit
-                  </button>
+                  {user ? (
+                    <button
+                      type="submit"
+                      className="bg-gray-400 text-white font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-700 hover:text-white"
+                      onClick={addComment}
+                    >
+                      submit
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      className="bg-gray-400 text-white font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-700 hover:text-white"
+                      onClick={goToSignIn}
+                    >
+                      submit
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

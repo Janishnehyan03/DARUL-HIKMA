@@ -15,9 +15,12 @@ class APIFeatures {
   }
   sort() {
     //2) SORT
+    console.log(this.queryString);
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(",").join(" ");
       this.query = this.query.sort(sortBy);
+    } else if (this.queryString.latest) {
+      this.query = this.query.sort("-createdAt");
     } else {
       this.query = this.query.sort({ likes: -1 });
     }
@@ -36,7 +39,7 @@ class APIFeatures {
   paginate() {
     // 4) PAGINATION
     const page = this.queryString.page * 1 || 1;
-    const limit = this.queryString.limit * 1 || 1000
+    const limit = this.queryString.limit * 1 || 1000;
     const skip = (page - 1) * limit;
     this.query = this.query.skip(skip).limit(limit);
     return this;

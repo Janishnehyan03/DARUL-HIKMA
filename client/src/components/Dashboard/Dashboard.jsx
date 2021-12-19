@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="main-container">
       <div className="heading">
@@ -19,14 +20,25 @@ function Dashboard() {
           </Link>
         </div>
         <div className="card card-1">
-          <h1 className="card__head">Users </h1>
+          <h1 className="card__head">Users</h1>
           <h2 className="card__head"></h2>
-          <Link to="/add-user">
+          <Link to="/users">
             <p className="card__apply">
-              <button className="card__link">Add User</button>
+              <button className="card__link">Activate Accounts </button>
             </p>
           </Link>
         </div>
+        {user.role === "admin" ? (
+          <div className="card card-1">
+            <h1 className="card__head">Users </h1>
+            <h2 className="card__head"></h2>
+            <Link to="/add-user">
+              <p className="card__apply">
+                <button className="card__link">Add User</button>
+              </p>
+            </Link>
+          </div>
+        ) : null}
         <div className="card card-1">
           <h1 className="card__head">Useful Links </h1>
           <h2 className="card__head"></h2>
@@ -69,15 +81,6 @@ function Dashboard() {
           <Link to="/feedbacks">
             <p className="card__apply">
               <button className="card__link">View Feedbacks</button>
-            </p>
-          </Link>
-        </div>
-        <div className="card card-1">
-          <h1 className="card__head">Users</h1>
-          <h2 className="card__head"></h2>
-          <Link to="/users">
-            <p className="card__apply">
-              <button className="card__link">Activate Accounts </button>
             </p>
           </Link>
         </div>
