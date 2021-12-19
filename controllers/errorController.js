@@ -5,8 +5,7 @@ const handleCastErrorDB = (err) => {
   return new AppError(message, 400);
 };
 const handleDuplicateFieldsDB = (err) => {
-  const value = err.value; //.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0];
-  const message = `duplicate field , please use another`;
+  const message = `Already exist , please use another`;
   return new AppError(message, 400);
 };
 const handleValidationErrorDB = () => {
@@ -71,6 +70,7 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === "production") {
+    console.log(err);
     let error = { ...err };
     error.message = err.message;
     if (error.name === "CastError") error = handleCastErrorDB(error);

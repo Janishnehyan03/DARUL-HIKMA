@@ -44,6 +44,7 @@ function App() {
     script.async = true;
     document.body.appendChild(script);
   }, []);
+
   return (
     <BrowserRouter>
       <Nav toggle={toggle} />

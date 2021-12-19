@@ -1,12 +1,13 @@
 const User = require("../models/userModel");
 const AppError = require("../utils/appError");
+const { promisify } = require("util");
 const catchAsync = require("../utils/catchAsync");
 const jwt = require("jsonwebtoken");
+const Review = require("../models/reviewModel");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    //payload and secret
-    expiresIn: 30 * 60000, //30 minutes
+    expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
@@ -21,7 +22,6 @@ const sendToken = (user, statusCode, req, res) => {
   res.cookie("jwt", token, cookieOptions);
   // remove password from output
   user.password = undefined;
-
   res.status(statusCode).json({
     status: "success",
     expireTime: expireTime,
@@ -32,8 +32,8 @@ const sendToken = (user, statusCode, req, res) => {
 
 exports.signUp = catchAsync(async (req, res, next) => {
   console.log(req.body);
-  const { name, email, password, passwordConfirm } = req.body;
-  if (!name || !email || !password || !passwordConfirm) {
+  const { username, email, password, passwordConfirm } = req.body;
+  if (!username || !email || !password || !passwordConfirm) {
     return next(new AppError("Please provide email and password", 400));
   }
   if (password !== passwordConfirm) {
@@ -55,7 +55,6 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect Email Or Password", 401));
   }
-  console.log(user);
   sendToken(user, 200, req, res);
 });
 
@@ -91,3 +90,14 @@ exports.logout = (req, res) => {
     message: "logged out",
   });
 };
+
+exports.addReview = catchAsync(async (req, res, next) => {
+  const review = await Review.create({
+    user: req.user._id,
+    ...req.body,
+  });
+  res.status(201).json({
+    status: "success",
+    review,
+  });
+});

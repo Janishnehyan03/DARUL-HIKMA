@@ -30,11 +30,17 @@ function Login() {
     e.preventDefault();
     dispatch(loginPending());
     try {
-      let response = await Axios.post("/api/v1/auth/login", { email, password });
+      let response = await Axios.post("/api/v1/auth/login", {
+        email,
+        password,
+      });
       if (response.data.status === "success") {
         dispatch(loginSuccess(response.data));
         window.localStorage.setItem("user", JSON.stringify(response.data.data));
-        window.localStorage.setItem("token", JSON.stringify(response.data.token));
+        window.localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.token)
+        );
         setTimeout(() => {
           window.location.href = "/dashboard";
         }, 2000);

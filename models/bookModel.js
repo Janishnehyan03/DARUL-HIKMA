@@ -23,6 +23,12 @@ const bookSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 bookSchema.set("timestamps", true);

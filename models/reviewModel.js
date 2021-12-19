@@ -4,11 +4,6 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     required: [true, "review cannot be empty"],
   },
-  rating: {
-    type: Number,
-    min: 1,
-    max: 5,
-  },
   book: {
     type: mongoose.Schema.ObjectId,
     ref: "Book", //REFERENCING
@@ -21,6 +16,12 @@ const reviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 const Review = mongoose.model("Review", reviewSchema);
 module.exports = Review;
