@@ -81,6 +81,7 @@ function SingleView(props) {
             ) : (
               ""
             )}
+            
           </>
         ) : (
           <>
