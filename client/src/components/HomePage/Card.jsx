@@ -3,6 +3,7 @@ import { Axios } from "../../Axios";
 import "../Home.css";
 import { CircularProgress } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 function Card({ title, url, view }) {
   const [books, setBooks] = useState([]);
@@ -47,8 +48,10 @@ function Card({ title, url, view }) {
                       </small>
                       {book.likes ? (
                         <p className="mt-5">
-                          {book.likes.length}{" "}
-                          {book.likes.length === 1 ? "like" : "likes"}{" "}
+                          {book.likes.length}
+                          <br />
+                          <FavoriteBorderOutlinedIcon />
+                          {/* {book.likes.length === 1 ? "like" : "likes"}{" "} */}
                         </p>
                       ) : null}
                     </div>
