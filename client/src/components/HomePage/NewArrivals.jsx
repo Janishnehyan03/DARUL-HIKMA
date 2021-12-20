@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Axios } from "../../Axios";
-import "../Home.css";
-import { CircularProgress } from "@material-ui/core";
+import FavoriteBorderOutlined from "@mui/icons-material/FavoriteBorderOutlined";
+import { CircularProgress } from "@mui/material";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { Axios } from "../../Axios";
 
-function Card({ title, url, view }) {
+function PopularBooks({ title }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   let baseUrl = "http://192.168.100.2:5000";
   const loadBooks = async () => {
     try {
       setLoading(true);
-      let response = await Axios.get(
-        `/api/v1/book?limit=12&category=${url}&category=${title}`
-      );
+      let response = await Axios.get(`/api/v1/book?limit=8&latest=true`);
       console.log(response.data.data);
       setBooks(response.data.data);
       setLoading(false);
@@ -43,7 +41,7 @@ function Card({ title, url, view }) {
                     <div className="card-book">
                       <img src={`${baseUrl}/${book.thumbnail}`} alt="" />
                       <p className="book-title">
-                        {book.title.substring(0, 40)}{" "}
+                        {book.title.substring(0, 30)}{" "}
                         {book.title.length > 40 ? "..." : ""}
                       </p>
                       <small className="book-category">
@@ -53,7 +51,7 @@ function Card({ title, url, view }) {
                         <p className="mt-5">
                           {book.likes.length}
                           <br />
-                          <FavoriteBorderOutlinedIcon />
+                          <FavoriteBorderOutlined />
                           {/* {book.likes.length === 1 ? "like" : "likes"}{" "} */}
                         </p>
                       ) : null}
@@ -62,9 +60,6 @@ function Card({ title, url, view }) {
                 </Link>
               </div>
             ))}
-            <Link to={`/${view}`}>
-              <button className="view-more-btn">view more </button>
-            </Link>
           </>
         )}
       </>
@@ -72,4 +67,4 @@ function Card({ title, url, view }) {
   );
 }
 
-export default Card;
+export default PopularBooks;

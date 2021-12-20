@@ -5,6 +5,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Axios } from "../Axios";
 import CommentTable from "./Normal User/CommentTable";
 import "./SingleView.css";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 function SingleView(props) {
   const [book, setBook] = useState("");
@@ -84,7 +85,8 @@ function SingleView(props) {
           <>
             {book.likes && (
               <h1 style={{ background: "#FEE3EC" }}>
-                {book.likes.length} {book.likes.length === 1 ? "like" : "likes"}
+                {book.likes.length}
+                <FavoriteBorderOutlinedIcon />
               </h1>
             )}
             {liked ? (
@@ -112,8 +114,8 @@ function SingleView(props) {
         ) : (
           <>
             {book.likes ? (
-              <h1 style={{ background: "#FEE3EC" }}>
-                {book.likes.length} {book.likes.length === 1 ? "like" : "likes"}
+              <h1 style={{ background: "#FEE3EC", marginTop: "2rem" }}>
+                {book.likes.length} <FavoriteBorderOutlinedIcon />
               </h1>
             ) : (
               ""
@@ -145,7 +147,9 @@ function SingleView(props) {
             style={{ marginLeft: "30rem", position: "absolute", top: "40rem" }}
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-8 rounded  items-center"
           >
-            <span>Read Now</span>
+            <a href={`${baseUrl}/${book.file}`} target={'_blank'} >
+              <span>Read Now</span>
+            </a>
           </button>
         </div>
       </div>

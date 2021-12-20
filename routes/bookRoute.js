@@ -6,7 +6,6 @@ const authController = require("../controllers/authController");
 router.get("/", bookController.getAllBooks);
 router.route("/category").get(bookController.getAllCategory);
 router.get("/language/:language", bookController.getAllLanguages);
-router.get('/most-liked', bookController.getMostLiked);
 // get singe / delete single / edit  book
 router
   .route("/book/:id")

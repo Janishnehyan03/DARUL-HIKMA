@@ -147,7 +147,7 @@ function AddLink() {
                   </a>
                 </td>
                 <td>
-                  <p> {table.details ? table.details.substring(0, 50) : ""}</p>
+                  <p> {table.details ? table.details.substring(0, 45) : ""}</p>
                 </td>
                 <td>
                   <p>{table.addedBy}</p>

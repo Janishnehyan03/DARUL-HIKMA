@@ -18,6 +18,11 @@ function LinkCard() {
         <a href={link.url} target={"_blank"}>
           <div className="bg-white shadow-lg rounded m-8 p-8 flex md:bg-orange">
             <div className="sm:w-2/3 ">
+              <img
+                src={`https://www.google.com/s2/favicons?sz=64&domain_url=${link.url}`}
+                alt=""
+                style={{ width: "64px", height: "64px" }}
+              />
               <h3 className="text-orange text-xl font-semibold md:text-black">
                 {link.name}
               </h3>

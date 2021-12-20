@@ -140,7 +140,7 @@ function Nav({ toggle }) {
               >
                 {localUser && (
                   <>
-                    <small>{time},</small> <br /> {localUser.username}
+                    <small>Welcome ,</small> <br /> {localUser.username}
                     <button
                       onClick={normalUserLogout}
                       class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 ml-4 rounded-full"
@@ -171,21 +171,30 @@ function Nav({ toggle }) {
                   onChange={handleChange}
                   placeholder="search any books here..."
                 />
+                <br />
+                {filteredData.length > 0 ? (
+                  <small>{filteredData.length} results</small>
+                ) : (
+                  ""
+                )}
               </div>
               {filteredData.length > 0 && (
                 <div className="data-results">
-                  {filteredData.slice(0, 15).map((item, index) => (
-                    <>
-                      <Link
-                        style={{ textDecoration: "none" }}
-                        to={`/view/${item._id}`}
-                      >
-                        <p className="data-item" onClick={clearInput}>
-                          {item.title}
-                        </p>
-                      </Link>
-                    </>
-                  ))}
+                  <div className="overflow-y-scroll overflow-x-hidden	 h-72">
+                    {filteredData.slice(0, 1000).map((item, index) => (
+                      <>
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          to={`/view/${item._id}`}
+                        >
+                          <div className="data-item">
+                            <p onClick={clearInput}>{item.title}</p>
+                            <small>{item.category}</small>
+                          </div>
+                        </Link>
+                      </>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

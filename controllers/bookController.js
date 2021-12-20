@@ -56,34 +56,7 @@ const Students = mongoose.model("Students", studentCornerSchema);
 
 exports.editBook = factory.updateOne(Book);
 exports.getAllBooks = factory.getAll(Book);
-exports.getMostLiked = async (req, res) => {
-  const mostLiked = await Book.aggregate([
-    {
-      $lookup: {
-        from: "likes",
-        localField: "_id",
-        foreignField: "book",
-        as: "likes",
-      },
-    },
-    {
-      $unwind: "$likes",
-    },
-    {
-      $group: {
-        _id: "$_id",
-        likes: { $sum: 1 },
-      },
-    },
-    {
-      $sort: { likes: -1 },
-    },
-  ]);
-  res.status(200).json({
-    status: "success",
-    data: mostLiked,
-  });
-};
+
 
 exports.getBook = factory.getOne(Book);
 exports.deleteBook = factory.deleteOne(Book);

@@ -13,7 +13,7 @@ function Footer() {
             </a>
           </p>
           <p className="footer-company-name">
-            Darul Hikma © <span id="footer-year">error;</span>
+            Darul Hikma © <span id="footer-year">2021-22</span>
           </p>
           <div className="footer-donate">
             <Link to="/donation">
