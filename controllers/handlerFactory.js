@@ -14,7 +14,6 @@ exports.deleteOne = (Model) =>
   });
 exports.updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
-    console.log(req.body);
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -33,7 +32,6 @@ exports.updateOne = (Model) =>
 
 exports.createOne = (model) =>
   catchAsync(async (req, res) => {
-    console.log(req.body);
     const doc = await model.create(req.body);
     res.status(201).json({
       status: "success",
@@ -46,7 +44,7 @@ exports.getOne = (Model, populateOptions) =>
     let query = Model.findById(req.params.id);
     if (populateOptions) query = query.populate(populateOptions); //check on the tourSchema
     const doc = await query;
-    console.log(doc);
+    // console.log(doc);
     if (!doc) {
       return next(new AppError("no document found in this ID", 404));
     }
@@ -67,6 +65,7 @@ exports.getAll = (Model) =>
       .limitFields()
       .paginate();
     const doc = await features.query;
+    // console.log(doc);
     //SEND RESPONSE
     res.status(200).json({
       results: doc.length,

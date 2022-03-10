@@ -5,7 +5,6 @@ import Footer from "./HomePage/Footer";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import MiddleSlide from "./HomePage/MiddleSlide";
 import Issue from "./HomePage/Feedbacks";
-import Notifications from "./HomePage/Notifications";
 import NewArrivals from "./HomePage/NewArrivals";
 
 function Home() {
@@ -17,6 +16,7 @@ function Home() {
         </Helmet>
       </HelmetProvider>
       <Slide />
+  
       <Card title={"ARABIC MAGAZINES"} view={"arabic"} url="ARABIC MAGAZINES" />
       {/* <Notifications /> */}
       <NewArrivals title={"NEW ARRIVALS"} />

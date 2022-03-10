@@ -74,6 +74,6 @@ const feedbackSchema = new mongoose.Schema({
 const Feedbacks = mongoose.model("Feedbacks", feedbackSchema);
 const Issues = mongoose.model("Issues", issueSchema);
 const SubCategory = mongoose.model("SubCategories", subCategorySchema);
-const Book = mongoose.model("Book", bookSchema);
+const Book = mongoose.model("books", bookSchema);
 
 module.exports = { Book, SubCategory, Issues, Feedbacks };

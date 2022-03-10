@@ -76,11 +76,13 @@ function SingleView(props) {
       <CommentTable bookId={book._id} />
 
       <div className="max-w-sm rounded shadow-lg m-4 content-center">
-        <img
-          className="w-full"
-          src={`${baseUrl}/${book.thumbnail}`}
-          alt={book.title}
-        />
+        <a href={`${baseUrl}/${book.file}`} target={"_blank"}>
+          <img
+            className="w-full"
+            src={`${baseUrl}/${book.thumbnail}`}
+            alt={book.title}
+          />
+        </a>
         {user ? (
           <>
             {book.likes && (
@@ -143,14 +145,18 @@ function SingleView(props) {
             <small onClick={checkLiked}>added on:</small>{" "}
             {moment(book.createdAt).format("LL")}
           </p>
-          <button
-            style={{ marginLeft: "30rem", position: "absolute", top: "40rem" }}
-            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-8 rounded  items-center"
-          >
-            <a href={`${baseUrl}/${book.file}`} target={'_blank'} >
+          <a href={`${baseUrl}/${book.file}`} target={"_blank"}>
+            <button
+              style={{
+                marginLeft: "30rem",
+                position: "absolute",
+                top: "40rem",
+              }}
+              class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-8 rounded  items-center"
+            >
               <span>Read Now</span>
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
     </div>

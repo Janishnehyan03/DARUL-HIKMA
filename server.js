@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 dotenv.config();
 
 //DB connection
-mongoose.connect(process.env.MONGO_URI, (err, data) => {
+mongoose.connect(process.env.MONGO_LOCAL, (err, data) => {
   if (err) console.log(`connection error`, err);
   else console.log("DB connected");
 });

@@ -4,10 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "client": "cd client && npx serve -s build",
     "start": "node server.js",
-    "client": "npm start --prefix client",
     "dev": "nodemon server.js",
-    "prod": "NODE_ENV=production nodemon server.js "
+    "prod": "npm run client && npm start"
   },
   "keywords": [],
   "author": "",

@@ -3,7 +3,7 @@ import { Axios } from "../../Axios";
 export default function StudentCorner() {
   const [tableData, setTableData] = React.useState([]);
   const getBook = async () => {
-    let response = await Axios.get("/api/v1/book/student-corner", {
+    let response = await Axios.get("/api/v1/book/student-corner?latest=true", {
       withCredentials: true,
     }).catch((err) => {
       console.log(err.response);
@@ -49,7 +49,7 @@ export default function StudentCorner() {
             </a>
           )}
           <div>
-            <h1 className="font-bold text-gray-700">{item.author}</h1>
+            <h1 className="font-bold text-gray-700">✒️ {item.author}</h1>
           </div>
         </div>
       </div>

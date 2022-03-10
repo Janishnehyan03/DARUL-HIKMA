@@ -58,16 +58,23 @@ function CommentTable() {
               {comments.map((comment, index) => (
                 <div className="px-6 py-4 bg-white border-b-4 border-gray-200">
                   {/* <div className="font-bold text-md mb-2">The Coldest Sunset</div> */}
-                  {user._id === comment.user._id ? (
-                    <Button
-                      className="like-button float-right"
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => deleteComment(comment._id)}
-                    >
-                      Delete
-                    </Button>
-                  ) : null}
+                  {user ? (
+                    <>
+                      {user._id === comment.user._id ? (
+                        <Button
+                          className="like-button float-right"
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => deleteComment(comment._id)}
+                        >
+                          Delete
+                        </Button>
+                      ) : null}
+                    </>
+                  ) : (
+                    ""
+                  )}
+
                   <p className="text-base">{comment.comment}</p>
                   <small className="text-base text-blue-600">
                     @ {comment.user.name}

@@ -66,7 +66,6 @@ exports.deleteCategory = factory.deleteOne(Category);
 exports.editCategory = factory.updateOne(Category);
 exports.getAllLanguages = async (req, res) => {
   let query = req.params.language;
-  console.log(query);
   const languages = await Book.find({ category: { $regex: query } }).sort({
     likes: -1,
   });
@@ -132,7 +131,6 @@ exports.addNewBook = catchAsync(async (req, res) => {
 });
 
 exports.createLink = async (req, res) => {
-  console.log(req.user);
   try {
     let bookData = await Links.create({
       url: req.body.url,
@@ -159,7 +157,6 @@ exports.deleteSubCategory = factory.deleteOne(SubCategory);
 exports.getAllSubCategory = factory.getAll(SubCategory);
 // student corner
 exports.addStudentCorner = async (req, res) => {
-  console.log(req.user);
   try {
     let studentData = await Students.create({
       title: req.body.title,
